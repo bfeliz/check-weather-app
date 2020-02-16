@@ -1,12 +1,15 @@
 //  on refresh of page need to have last query already showing
 
 $(document).ready(function() {
+    var cityArray = [];
     // on click of search button start data population functions
     $(".search-button").on("click", function(event) {
         event.preventDefault();
 
         // user input
-        var city = $(".search-bar").val();
+        var city = $(".search-bar")
+            .val()
+            .trim();
 
         // current city weather url
         var queryURL =
@@ -20,20 +23,23 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             // clear previous search data
+            console.log(response);
             $("p").remove();
             $("img").remove();
 
-            console.log(response);
             // variables from first call storing data for later use
             var now = moment().format("MMMM Do, YYYY");
             var lat = response.coord.lat;
             var lon = response.coord.lon;
+            console.log("lat" + lat);
+            console.log("lon" + lon);
+
             var cityID = response.id;
 
             // populate requested current weather parameters
-            var city = $("<p>");
-            city.text("Location: " + response.name);
-            $(".current-weather").append(city);
+            var cityName = $("<p>");
+            cityName.text("Location: " + response.name);
+            $(".current-weather").append(cityName);
 
             var date = $("<p>");
             date.text("Date: " + now);
@@ -60,7 +66,6 @@ $(document).ready(function() {
             wind.text("Wind: " + response.wind.speed);
             $(".current-weather").append(wind);
 
-            // current city UV index url
             var uvURL =
                 "http://api.openweathermap.org/data/2.5/uvi?appid=73dd4f9c95552ba9b2a9aa8643789ace&lat=" +
                 lat +
@@ -72,12 +77,9 @@ $(document).ready(function() {
                 url: uvURL,
                 method: "GET"
             }).then(function(urlData) {
-                console.log(urlData);
-
                 // populate requested current UV parameters
                 var uv = $("<p>");
                 uv.text("UV Index: " + urlData.value);
-                console.log(urlData.value);
                 $(".current-weather").append(uv);
 
                 // consider changing to buttons????
@@ -106,11 +108,8 @@ $(document).ready(function() {
                 url: dailyURL,
                 method: "GET"
             }).then(function(dailyData) {
-                console.log(dailyData);
                 for (let i = 0; i < dailyData.list.length; i++) {
                     if (dailyData.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-                        console.log(dailyData.list[i]);
-
                         // populate requested future weather parameters
                         var fDate = $("<p>");
                         fDate.text("Date: " + dailyData.list[i].dt_txt);
@@ -142,5 +141,40 @@ $(document).ready(function() {
                 }
             });
         });
+
+        addToArray();
+        storeArray();
+        favoritesBtns();
+
+        // prevents duplicate cities from being added to favorites
+        function addToArray() {
+            if (cityArray.includes(city) === false) {
+                console.log(city);
+                cityArray.push(city);
+            }
+        }
     });
+
+    // adds favorites buttons
+    function favoritesBtns() {
+        $(".favorites").empty();
+        for (let i = 0; i < cityArray.length; i++) {
+            var button = $("<button>");
+            button.text(cityArray[i]);
+            $(".favorites").prepend(button);
+        }
+    }
+
+    // local storage functions to store searched cities
+    function storeArray() {
+        localStorage.setItem("cityArray", JSON.stringify(cityArray));
+    }
+
+    function getArray() {
+        var browserArray = JSON.parse(localStorage.getItem("cityArray"));
+        if (browserArray !== null) {
+            cityArray = browserArray;
+        }
+    }
+    getArray();
 });
