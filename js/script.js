@@ -92,7 +92,7 @@ $(document).ready(function() {
         var icon = $("<img>");
         icon.attr(
             "src",
-            "http://openweathermap.org/img/w/" +
+            "https://openweathermap.org/img/w/" +
                 response.weather[0].icon +
                 ".png"
         );
@@ -111,7 +111,7 @@ $(document).ready(function() {
         $(".current-weather").append(wind);
 
         var uvURL =
-            "http://api.openweathermap.org/data/2.5/uvi?appid=73dd4f9c95552ba9b2a9aa8643789ace&lat=" +
+            "https://api.openweathermap.org/data/2.5/uvi?appid=73dd4f9c95552ba9b2a9aa8643789ace&lat=" +
             lat +
             "&lon=" +
             lon;
@@ -184,7 +184,6 @@ $(document).ready(function() {
                 }
             }
         });
-        // });
 
         storeArray();
         favoritesBtns();
