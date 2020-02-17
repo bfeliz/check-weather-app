@@ -11,19 +11,39 @@
 </head>
 
 <body>
-    <div class="input-group mb-3">
-        <input type="text" class="form-control search-bar" placeholder="Enter a city name" aria-label="City name"
-            aria-describedby="button-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">Search</button>
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand text-white" href="#">What's the Weather?</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Type a city name"
+                aria-label="Search" onfocus="this.value=''">
+            <button class="btn btn-outline-light my-2 my-sm-0 search-button" type="submit">Search</button>
+        </form>
+    </nav>
+    <div class="card search-card bg-light">
+        <div class="card-header text-center text-primary">
+            Favorite Searches
+        </div>
+        <div class="card-body bg-light">
+            <div class="favorites text-center"></div>
         </div>
     </div>
-    <div class="current-weather">
+
+    <div class="card w-75 current-card bg-light">
+        <div class="current-weather card-body">
+        </div>
     </div>
 
-    <div class="future-weather">
+    <div class="card future-card w-75 bg-light">
+        <div class="card-body bg-light">
+            <div class="future-weather">
+                <div class="future-cards" id="day-one"></div>
+                <div class="future-cards" id="day-two"></div>
+                <div class="future-cards" id="day-three"></div>
+                <div class="future-cards" id="day-four"></div>
+                <div class="future-cards" id="day-five"></div>
+            </div>
+        </div>
     </div>
-    <div class="favorites"></div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

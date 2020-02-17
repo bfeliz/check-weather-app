@@ -1,0 +1,32 @@
+body {
+    background-image: url(../assets/images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.navbar {
+    opacity: 0.8;
+}
+.future-cards {
+    background-color: #4f9bd1;
+    color: white;
+    margin: 10px;
+    padding: 5px;
+    float: left;
+}
+.city-btn {
+    margin: 0px 5px;
+}
+.search-card {
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+.current-card {
+    margin: auto;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+.future-card {
+    margin: auto;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
