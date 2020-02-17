@@ -1,38 +1,45 @@
 $(document).ready(function() {
     var cityArray = [];
 
+    // new date calls for 5 day forcasts
+    var dayOne = dOne();
+    var dayTwo = dTwo();
+    var dayThree = dThree();
+    var dayFour = dFour();
+    var dayFive = dFive();
+
     var dataArray = [
         {
             id: "#day-one",
-            date: "",
+            date: dayOne,
             icon: "",
             temp: "",
             humid: ""
         },
         {
             id: "#day-two",
-            date: "",
+            date: dayTwo,
             icon: "",
             temp: "",
             humid: ""
         },
         {
             id: "#day-three",
-            date: "",
+            date: dayThree,
             icon: "",
             temp: "",
             humid: ""
         },
         {
             id: "#day-four",
-            date: "",
+            date: dayFour,
             icon: "",
             temp: "",
             humid: ""
         },
         {
             id: "#day-five",
-            date: "",
+            date: dayFive,
             icon: "",
             temp: "",
             humid: ""
@@ -193,7 +200,6 @@ $(document).ready(function() {
             for (let i = 0; i < dailyData.list.length; i++) {
                 if (dailyData.list[i].dt_txt.indexOf("15:00:00") !== -1) {
                     // push sorted data into array
-                    futureArray.push(dailyData.list[i].dt_txt);
                     futureArray.push(dailyData.list[i].weather[0].icon);
                     futureArray.push(dailyData.list[i].main.temp_max);
                     futureArray.push(dailyData.list[i].main.humidity);
@@ -201,26 +207,21 @@ $(document).ready(function() {
             }
 
             // push array data into objects
-            dataArray[0].date = futureArray[0];
-            dataArray[0].icon = futureArray[1];
-            dataArray[0].temp = futureArray[2];
-            dataArray[0].humid = futureArray[3];
-            dataArray[1].date = futureArray[4];
-            dataArray[1].icon = futureArray[5];
-            dataArray[1].temp = futureArray[6];
-            dataArray[1].humid = futureArray[7];
-            dataArray[2].date = futureArray[8];
-            dataArray[2].icon = futureArray[9];
-            dataArray[2].temp = futureArray[10];
-            dataArray[2].humid = futureArray[11];
-            dataArray[3].date = futureArray[12];
-            dataArray[3].icon = futureArray[13];
-            dataArray[3].temp = futureArray[14];
-            dataArray[3].humid = futureArray[15];
-            dataArray[4].date = futureArray[16];
-            dataArray[4].icon = futureArray[17];
-            dataArray[4].temp = futureArray[18];
-            dataArray[4].humid = futureArray[19];
+            dataArray[0].icon = futureArray[0];
+            dataArray[0].temp = futureArray[1];
+            dataArray[0].humid = futureArray[2];
+            dataArray[1].icon = futureArray[3];
+            dataArray[1].temp = futureArray[4];
+            dataArray[1].humid = futureArray[5];
+            dataArray[2].icon = futureArray[6];
+            dataArray[2].temp = futureArray[7];
+            dataArray[2].humid = futureArray[8];
+            dataArray[3].icon = futureArray[9];
+            dataArray[3].temp = futureArray[10];
+            dataArray[3].humid = futureArray[11];
+            dataArray[4].icon = futureArray[12];
+            dataArray[4].temp = futureArray[13];
+            dataArray[4].humid = futureArray[14];
 
             // insert 5 day weather data
             for (let m = 0; m < dataArray.length; m++) {
@@ -298,6 +299,32 @@ $(document).ready(function() {
         }
     }
 
+    // new date functions for 5 day forcast
+    function dOne() {
+        var today = moment();
+        var tomorrow = today.add(1, "days");
+        return moment(tomorrow).format("M/D/YY");
+    }
+    function dTwo() {
+        var today = moment();
+        var tomorrow = today.add(2, "days");
+        return moment(tomorrow).format("M/D/YY");
+    }
+    function dThree() {
+        var today = moment();
+        var tomorrow = today.add(3, "days");
+        return moment(tomorrow).format("M/D/YY");
+    }
+    function dFour() {
+        var today = moment();
+        var tomorrow = today.add(4, "days");
+        return moment(tomorrow).format("M/D/YY");
+    }
+    function dFive() {
+        var today = moment();
+        var tomorrow = today.add(5, "days");
+        return moment(tomorrow).format("M/D/YY");
+    }
     // on click of search button start data population functions
     $(".search-button").on("click", function(event) {
         event.preventDefault();
