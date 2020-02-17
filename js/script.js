@@ -284,10 +284,17 @@ $(document).ready(function() {
     // adds favorites buttons
     function favoritesBtns() {
         $(".favorites").empty();
+        if (cityArray.length !== 0) {
+            var clearBtn = $("<button>");
+            clearBtn
+                .addClass("clear-btn btn btn-outline-light my-2 my-sm-0")
+                .text("Clear");
+            $(".favorites").append(clearBtn);
+        }
         for (let i = 0; i < cityArray.length; i++) {
             var button = $("<button>");
             button
-                .addClass("city-btn btn btn-outline-primary my-2 my-sm-0")
+                .addClass("city-btn btn btn-outline-light my-2 my-sm-0")
                 .attr("data-name", cityArray[i])
                 .text(cityArray[i]);
             $(".favorites").append(button);
@@ -305,6 +312,23 @@ $(document).ready(function() {
             cityArray = browserArray;
         }
     }
+
+    function resetFavs() {
+        cityArray = [];
+        $(".favorites").empty();
+        storeArray();
+        getArray();
+        if (cityArray.length !== 0) {
+            var clearBtn = $("<button>");
+            clearBtn
+                .addClass("clear-btn btn btn-outline-light my-2 my-sm-0")
+                .text("Clear");
+            $(".favorites").append(clearBtn);
+        }
+    }
+
+    $(document).on("click", ".clear-btn", resetFavs);
+
     loadPage();
     getArray();
     favoritesBtns();

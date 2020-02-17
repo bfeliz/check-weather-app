@@ -13,12 +13,15 @@ body {
     padding: 5px;
     float: left;
 }
+.clear-btn,
 .city-btn {
     margin: 0px 5px;
+    padding: 4px;
 }
 .search-card {
     margin-bottom: 50px;
-    opacity: 0.8;
+    opacity: 0.6;
+    background-color: #4f9bd1;
 }
 .current-card {
     margin: auto;
