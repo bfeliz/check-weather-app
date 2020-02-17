@@ -175,15 +175,21 @@ $(document).ready(function() {
 
             // UV index color coding
             if (urlData.value < 3) {
-                $(".uvBtn").css("background-color", "green");
+                $(".uvBtn")
+                    .css("background-color", "green")
+                    .css("color", "white");
             } else if (urlData.value > 2 && urlData.value < 6) {
                 $(".uvBtn").css("background-color", "yellow");
             } else if (urlData.value > 5 && urlData.value < 8) {
                 $(".uvBtn").css("background-color", "orange");
             } else if (urlData.value > 7 && urlData.value < 11) {
-                $(".uvBtn").css("background-color", "red");
+                $(".uvBtn")
+                    .css("background-color", "red")
+                    .css("color", "white");
             } else if (urlData.value >= 11) {
-                $(".uvBtn").css("background-color", "purple");
+                $(".uvBtn")
+                    .css("background-color", "purple")
+                    .css("color", "white");
             }
         });
 
