@@ -1,6 +1,43 @@
 $(document).ready(function() {
     var cityArray = [];
-    var futureArray = [];
+
+    var dataArray = [
+        {
+            id: "#day-one",
+            date: "",
+            icon: "",
+            temp: "",
+            humid: ""
+        },
+        {
+            id: "#day-two",
+            date: "",
+            icon: "",
+            temp: "",
+            humid: ""
+        },
+        {
+            id: "#day-three",
+            date: "",
+            icon: "",
+            temp: "",
+            humid: ""
+        },
+        {
+            id: "#day-four",
+            date: "",
+            icon: "",
+            temp: "",
+            humid: ""
+        },
+        {
+            id: "#day-five",
+            date: "",
+            icon: "",
+            temp: "",
+            humid: ""
+        }
+    ];
 
     // populate Phoenix weather on page load
     function loadPage() {
@@ -61,22 +98,6 @@ $(document).ready(function() {
         }).then(getWeather);
     }
 
-    // on click of search button start data population functions
-    $(".search-button").on("click", function(event) {
-        event.preventDefault();
-
-        var queryURL = buildSearchURL();
-
-        // AJAX call for search button
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(getWeather);
-    });
-
-    // on click of buttons start data population fuctions
-    $(document).on("click", ".city-btn", buildBtnURL);
-
     function getWeather(response) {
         // clear previous search data
         $("p").remove();
@@ -121,6 +142,7 @@ $(document).ready(function() {
         wind.text("Wind: " + response.wind.speed);
         $(".current-weather").append(wind);
 
+        // current city URL for UV data
         var uvURL =
             "https://api.openweathermap.org/data/2.5/uvi?appid=73dd4f9c95552ba9b2a9aa8643789ace&lat=" +
             lat +
@@ -141,7 +163,6 @@ $(document).ready(function() {
             button.addClass("uvBtn").text(urlData.value);
             $(".uv").append(button);
 
-            // consider changing to buttons????
             // UV index color coding
             if (urlData.value < 3) {
                 $(".uvBtn").css("background-color", "green");
@@ -167,10 +188,11 @@ $(document).ready(function() {
             url: dailyURL,
             method: "GET"
         }).then(function(dailyData) {
+            // five day forcast results sort
+            var futureArray = [];
             for (let i = 0; i < dailyData.list.length; i++) {
                 if (dailyData.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-                    // populate requested future weather parameters
-
+                    // push sorted data into array
                     futureArray.push(dailyData.list[i].dt_txt);
                     futureArray.push(dailyData.list[i].weather[0].icon);
                     futureArray.push(dailyData.list[i].main.temp_max);
@@ -178,100 +200,51 @@ $(document).ready(function() {
                 }
             }
 
-            var fDate = $("<p>");
-            fDate.text(futureArray[0]);
-            $("#day-one").append(fDate);
+            // push array data into objects
+            dataArray[0].date = futureArray[0];
+            dataArray[0].icon = futureArray[1];
+            dataArray[0].temp = futureArray[2];
+            dataArray[0].humid = futureArray[3];
+            dataArray[1].date = futureArray[4];
+            dataArray[1].icon = futureArray[5];
+            dataArray[1].temp = futureArray[6];
+            dataArray[1].humid = futureArray[7];
+            dataArray[2].date = futureArray[8];
+            dataArray[2].icon = futureArray[9];
+            dataArray[2].temp = futureArray[10];
+            dataArray[2].humid = futureArray[11];
+            dataArray[3].date = futureArray[12];
+            dataArray[3].icon = futureArray[13];
+            dataArray[3].temp = futureArray[14];
+            dataArray[3].humid = futureArray[15];
+            dataArray[4].date = futureArray[16];
+            dataArray[4].icon = futureArray[17];
+            dataArray[4].temp = futureArray[18];
+            dataArray[4].humid = futureArray[19];
 
-            var fIcon = $("<img>");
-            fIcon.attr(
-                "src",
-                "http://openweathermap.org/img/w/" + futureArray[1] + ".png"
-            );
-            $("#day-one").append(fIcon);
+            // insert 5 day weather data
+            for (let m = 0; m < dataArray.length; m++) {
+                var fDate = $("<p>");
+                fDate.text(dataArray[m].date);
+                $(dataArray[m].id).append(fDate);
 
-            var fTemp = $("<p>");
-            fTemp.text("Temperature: " + futureArray[2] + " \u00B0F");
-            $("#day-one").append(fTemp);
+                var fIcon = $("<img>");
+                fIcon.attr(
+                    "src",
+                    "http://openweathermap.org/img/w/" +
+                        dataArray[m].icon +
+                        ".png"
+                );
+                $(dataArray[m].id).append(fIcon);
 
-            var fHumidity = $("<p>");
-            fHumidity.text("Humidity: " + futureArray[3] + "%");
-            $("#day-one").append(fHumidity);
+                var fTemp = $("<p>");
+                fTemp.text("Temperature: " + dataArray[m].temp + " \u00B0F");
+                $(dataArray[m].id).append(fTemp);
 
-            var fDate = $("<p>");
-            fDate.text(futureArray[4]);
-            $("#day-two").append(fDate);
-
-            var fIcon = $("<img>");
-            fIcon.attr(
-                "src",
-                "http://openweathermap.org/img/w/" + futureArray[5] + ".png"
-            );
-            $("#day-two").append(fIcon);
-
-            var fTemp = $("<p>");
-            fTemp.text("Temperature: " + futureArray[6] + " \u00B0F");
-            $("#day-two").append(fTemp);
-
-            var fHumidity = $("<p>");
-            fHumidity.text("Humidity: " + futureArray[7] + "%");
-            $("#day-two").append(fHumidity);
-
-            var fDate = $("<p>");
-            fDate.text(futureArray[8]);
-            $("#day-three").append(fDate);
-
-            var fIcon = $("<img>");
-            fIcon.attr(
-                "src",
-                "http://openweathermap.org/img/w/" + futureArray[9] + ".png"
-            );
-            $("#day-three").append(fIcon);
-
-            var fTemp = $("<p>");
-            fTemp.text("Temperature: " + futureArray[10] + " \u00B0F");
-            $("#day-three").append(fTemp);
-
-            var fHumidity = $("<p>");
-            fHumidity.text("Humidity: " + futureArray[11] + "%");
-            $("#day-three").append(fHumidity);
-
-            var fDate = $("<p>");
-            fDate.text(futureArray[12]);
-            $("#day-four").append(fDate);
-
-            var fIcon = $("<img>");
-            fIcon.attr(
-                "src",
-                "http://openweathermap.org/img/w/" + futureArray[13] + ".png"
-            );
-            $("#day-four").append(fIcon);
-
-            var fTemp = $("<p>");
-            fTemp.text("Temperature: " + futureArray[14] + " \u00B0F");
-            $("#day-four").append(fTemp);
-
-            var fHumidity = $("<p>");
-            fHumidity.text("Humidity: " + futureArray[15] + "%");
-            $("#day-four").append(fHumidity);
-
-            var fDate = $("<p>");
-            fDate.text(futureArray[16]);
-            $("#day-five").append(fDate);
-
-            var fIcon = $("<img>");
-            fIcon.attr(
-                "src",
-                "http://openweathermap.org/img/w/" + futureArray[17] + ".png"
-            );
-            $("#day-five").append(fIcon);
-
-            var fTemp = $("<p>");
-            fTemp.text("Temperature: " + futureArray[18] + " \u00B0F");
-            $("#day-five").append(fTemp);
-
-            var fHumidity = $("<p>");
-            fHumidity.text("Humidity: " + futureArray[19] + "%");
-            $("#day-five").append(fHumidity);
+                var fHumidity = $("<p>");
+                fHumidity.text("Humidity: " + dataArray[m].humid + "%");
+                $(dataArray[m].id).append(fHumidity);
+            }
         });
 
         storeArray();
@@ -310,6 +283,7 @@ $(document).ready(function() {
         }
     }
 
+    // function to reset favorite buttons area
     function resetFavs() {
         cityArray = [];
         $(".favorites").empty();
@@ -324,8 +298,26 @@ $(document).ready(function() {
         }
     }
 
+    // on click of search button start data population functions
+    $(".search-button").on("click", function(event) {
+        event.preventDefault();
+
+        var queryURL = buildSearchURL();
+
+        // AJAX call for search button
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(getWeather);
+    });
+
+    // on click of buttons start data population fuctions
+    $(document).on("click", ".city-btn", buildBtnURL);
+
+    // event listener for favorites clear button
     $(document).on("click", ".clear-btn", resetFavs);
 
+    // functions to run on page load
     loadPage();
     getArray();
     favoritesBtns();
