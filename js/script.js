@@ -1,9 +1,18 @@
-//  on refresh of page need to have last query already showing
-
 $(document).ready(function() {
     var cityArray = [];
-
     var futureArray = [];
+
+    // populate Phoenix weather on page load
+    function loadPage() {
+        var queryURL =
+            "https://api.openweathermap.org/data/2.5/weather?q=phoenix&units=imperial&appid=73dd4f9c95552ba9b2a9aa8643789ace";
+
+        // page load AJAX call
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(getWeather);
+    }
 
     // build search button URL
     function buildSearchURL() {
@@ -127,21 +136,25 @@ $(document).ready(function() {
         }).then(function(urlData) {
             // populate requested current UV parameters
             var uv = $("<p>");
-            uv.addClass("uv").text("UV Index: " + urlData.value);
+            uv.addClass("uv").text("UV Index: ");
             $(".current-weather").append(uv);
+
+            var button = $("<button>");
+            button.addClass("uvBtn").text(urlData.value);
+            $(".uv").append(button);
 
             // consider changing to buttons????
             // UV index color coding
             if (urlData.value < 3) {
-                $(".uv").css("color", "green");
+                $(".uvBtn").css("background-color", "green");
             } else if (urlData.value > 2 && urlData.value < 6) {
-                $(".uv").css("color", "yellow");
+                $(".uvBtn").css("background-color", "yellow");
             } else if (urlData.value > 5 && urlData.value < 8) {
-                $(".uv").css("color", "orange");
+                $(".uvBtn").css("background-color", "orange");
             } else if (urlData.value > 7 && urlData.value < 11) {
-                $(".uv").css("color", "red");
+                $(".uvBtn").css("background-color", "red");
             } else if (urlData.value >= 11) {
-                $(".uv").css("color", "purple");
+                $(".uvBtn").css("background-color", "purple");
             }
         });
 
@@ -292,6 +305,7 @@ $(document).ready(function() {
             cityArray = browserArray;
         }
     }
+    loadPage();
     getArray();
     favoritesBtns();
 });
