@@ -120,12 +120,15 @@ $(document).ready(function() {
         // populate requested current weather parameters
         var cityName = $("<p>");
         cityName
+            .addClass("title")
             .text(response.name)
             .css({ "font-weight": "bolder", "font-size": "x-large" });
         $(".current-weather").append(cityName);
 
         var date = $("<p>");
-        date.text(now).css("font-size", "large");
+        date.addClass("title")
+            .text(now)
+            .css("font-size", "large");
         $(".current-weather").append(date);
 
         var icon = $("<img>");
@@ -146,7 +149,7 @@ $(document).ready(function() {
         $(".current-weather").append(humidity);
 
         var wind = $("<p>");
-        wind.text("Wind: " + response.wind.speed);
+        wind.text("Wind: " + response.wind.speed + " mph");
         $(".current-weather").append(wind);
 
         // current city URL for UV data

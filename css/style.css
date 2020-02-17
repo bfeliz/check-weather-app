@@ -6,6 +6,10 @@ body {
 .navbar {
     opacity: 0.8;
 }
+.title {
+    display: inline-block;
+    padding-right: 15px;
+}
 .future-cards {
     background-color: #4f9bd1;
     color: white;
