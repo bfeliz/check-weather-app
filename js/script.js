@@ -32,7 +32,6 @@ $(document).ready(function() {
             cityArray.push(city);
         }
         // adds main query URL components together
-        console.log(cityQueryURL + city + finalCityURL);
         return cityQueryURL + city + finalCityURL;
     }
 
@@ -54,7 +53,6 @@ $(document).ready(function() {
 
         // save button click URL in variable
         var queryURL = finalReturn();
-        console.log(queryURL);
 
         // AJAX call for buttons
         $.ajax({
@@ -179,10 +177,9 @@ $(document).ready(function() {
                     futureArray.push(dailyData.list[i].main.humidity);
                 }
             }
-            console.log(futureArray);
 
             var fDate = $("<p>");
-            fDate.text("Date: " + futureArray[0]);
+            fDate.text(futureArray[0]);
             $("#day-one").append(fDate);
 
             var fIcon = $("<img>");
@@ -201,7 +198,7 @@ $(document).ready(function() {
             $("#day-one").append(fHumidity);
 
             var fDate = $("<p>");
-            fDate.text("Date: " + futureArray[4]);
+            fDate.text(futureArray[4]);
             $("#day-two").append(fDate);
 
             var fIcon = $("<img>");
@@ -220,7 +217,7 @@ $(document).ready(function() {
             $("#day-two").append(fHumidity);
 
             var fDate = $("<p>");
-            fDate.text("Date: " + futureArray[8]);
+            fDate.text(futureArray[8]);
             $("#day-three").append(fDate);
 
             var fIcon = $("<img>");
@@ -239,7 +236,7 @@ $(document).ready(function() {
             $("#day-three").append(fHumidity);
 
             var fDate = $("<p>");
-            fDate.text("Date: " + futureArray[12]);
+            fDate.text(futureArray[12]);
             $("#day-four").append(fDate);
 
             var fIcon = $("<img>");
@@ -258,7 +255,7 @@ $(document).ready(function() {
             $("#day-four").append(fHumidity);
 
             var fDate = $("<p>");
-            fDate.text("Date: " + futureArray[16]);
+            fDate.text(futureArray[16]);
             $("#day-five").append(fDate);
 
             var fIcon = $("<img>");

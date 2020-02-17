@@ -11,7 +11,10 @@ body {
     color: white;
     margin: 10px;
     padding: 5px;
-    float: left;
+    display: inline-block;
+}
+.future-weather {
+    text-align: center;
 }
 .clear-btn,
 .city-btn {
