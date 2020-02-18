@@ -209,28 +209,30 @@ $(document).ready(function() {
             for (let i = 0; i < dailyData.list.length; i++) {
                 if (dailyData.list[i].dt_txt.indexOf("15:00:00") !== -1) {
                     // push sorted data into array
-                    futureArray.push(dailyData.list[i].weather[0].icon);
-                    futureArray.push(dailyData.list[i].main.temp_max);
-                    futureArray.push(dailyData.list[i].main.humidity);
+                    // futureArray.push(dailyData.list[i].weather[0].icon);
+                    // futureArray.push(dailyData.list[i].main.temp_max);
+                    // futureArray.push(dailyData.list[i].main.humidity);
+                    futureArray.push(dailyData.list[i]);
                 }
             }
+            console.log(futureArray);
 
             // push array data into objects
-            dataArray[0].icon = futureArray[0];
-            dataArray[0].temp = futureArray[1];
-            dataArray[0].humid = futureArray[2];
-            dataArray[1].icon = futureArray[3];
-            dataArray[1].temp = futureArray[4];
-            dataArray[1].humid = futureArray[5];
-            dataArray[2].icon = futureArray[6];
-            dataArray[2].temp = futureArray[7];
-            dataArray[2].humid = futureArray[8];
-            dataArray[3].icon = futureArray[9];
-            dataArray[3].temp = futureArray[10];
-            dataArray[3].humid = futureArray[11];
-            dataArray[4].icon = futureArray[12];
-            dataArray[4].temp = futureArray[13];
-            dataArray[4].humid = futureArray[14];
+            // dataArray[0].icon = futureArray[0];
+            // dataArray[0].temp = futureArray[1];
+            // dataArray[0].humid = futureArray[2];
+            // dataArray[1].icon = futureArray[3];
+            // dataArray[1].temp = futureArray[4];
+            // dataArray[1].humid = futureArray[5];
+            // dataArray[2].icon = futureArray[6];
+            // dataArray[2].temp = futureArray[7];
+            // dataArray[2].humid = futureArray[8];
+            // dataArray[3].icon = futureArray[9];
+            // dataArray[3].temp = futureArray[10];
+            // dataArray[3].humid = futureArray[11];
+            // dataArray[4].icon = futureArray[12];
+            // dataArray[4].temp = futureArray[13];
+            // dataArray[4].humid = futureArray[14];
 
             // insert 5 day weather data
             for (let m = 0; m < dataArray.length; m++) {
@@ -238,22 +240,33 @@ $(document).ready(function() {
                 fDate.text(dataArray[m].date);
                 $(dataArray[m].id).append(fDate);
 
-                var fIcon = $("<img>");
-                fIcon.attr(
-                    "src",
-                    "http://openweathermap.org/img/w/" +
-                        dataArray[m].icon +
-                        ".png"
-                );
-                $(dataArray[m].id).append(fIcon);
+                for (let j = 0; j < futureArray.length; j++) {
+                    var fIcon = $("<img>");
+                    fIcon.attr(
+                        "src",
+                        "http://openweathermap.org/img/w/" +
+                            futureArray[j].weather[0].icon +
+                            ".png"
+                    );
+                    $(dataArray[m].id).append(fIcon);
+                }
 
-                var fTemp = $("<p>");
-                fTemp.text("Temperature: " + dataArray[m].temp + " \u00B0F");
-                $(dataArray[m].id).append(fTemp);
+                // var fIcon = $("<img>");
+                // fIcon.attr(
+                //     "src",
+                //     "http://openweathermap.org/img/w/" +
+                //         dataArray[m].icon +
+                //         ".png"
+                // );
+                // $(dataArray[m].id).append(fIcon);
 
-                var fHumidity = $("<p>");
-                fHumidity.text("Humidity: " + dataArray[m].humid + "%");
-                $(dataArray[m].id).append(fHumidity);
+                // var fTemp = $("<p>");
+                // fTemp.text("Temperature: " + dataArray[m].temp + " \u00B0F");
+                // $(dataArray[m].id).append(fTemp);
+
+                // var fHumidity = $("<p>");
+                // fHumidity.text("Humidity: " + dataArray[m].humid + "%");
+                // $(dataArray[m].id).append(fHumidity);
             }
         });
 
