@@ -4,11 +4,11 @@
 
 Fifth Homework Assignment - An easy to use weather application that allows you to search for a city and view the current weather, as well as the five-day forcast. Previously viewed cities are added to the favorites list for quick future reference.
 
-The following image shows a glimpse of the application
+The following image shows a glimpse of the application:
 
 ![weather dashboard](assets/images/weather.png)
 
-## Link to github repository:
+## Link to GitHub repository:
 
 https://github.com/bfeliz/check-weather-app
 
