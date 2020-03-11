@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    var cityArray = [];
-    var dataArray = [];
+    let cityArray = [];
+    let dataArray = [];
     for (let i = 1; i < 6; i++) {
-        var today = moment();
-        var tomorrow = today.add(i, "days");
-        var date = moment(tomorrow).format("M/D/YY");
+        const today = moment();
+        const tomorrow = today.add(i, "days");
+        const date = moment(tomorrow).format("M/D/YY");
         dataArray.push({
             id: "#day-" + i,
             date: date,
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     // populate Phoenix weather on page load
     function loadPage() {
-        var queryURL =
+        const queryURL =
             "https://api.openweathermap.org/data/2.5/weather?q=phoenix&units=imperial&appid=73dd4f9c95552ba9b2a9aa8643789ace";
 
         // page load AJAX call
@@ -29,14 +29,15 @@ $(document).ready(function() {
     // build search button URL
     function buildSearchURL() {
         // beginning of main query URL
-        var cityQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+        const cityQueryURL =
+            "https://api.openweathermap.org/data/2.5/weather?q=";
 
         // additional query parameters
-        var city = $(".search-bar")
+        const city = $(".search-bar")
             .val()
             .trim();
 
-        var finalCityURL =
+        const finalCityURL =
             "&units=imperial&appid=73dd4f9c95552ba9b2a9aa8643789ace";
 
         // prevents duplicate cities from being added to favorites, otherwise pushes city to array for button creation
@@ -50,12 +51,13 @@ $(document).ready(function() {
     // build favorite buttons URL
     function buildBtnURL() {
         // beginning of button query URL
-        var btnQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+        const btnQueryURL =
+            "https://api.openweathermap.org/data/2.5/weather?q=";
 
         // additional query parameters
-        var btnCity = $(this).attr("data-name");
+        const btnCity = $(this).attr("data-name");
 
-        var finalBtnURL =
+        const finalBtnURL =
             "&units=imperial&appid=73dd4f9c95552ba9b2a9aa8643789ace";
 
         // adds button click URL components together
@@ -64,7 +66,7 @@ $(document).ready(function() {
         }
 
         // save button click URL in variable
-        var queryURL = finalReturn();
+        const queryURL = finalReturn();
 
         // AJAX call for buttons
         $.ajax({
@@ -79,27 +81,27 @@ $(document).ready(function() {
         $("img").remove();
 
         // variables from first call storing data for later use
-        var now = moment().format("MMMM Do, YYYY");
-        var lat = response.coord.lat;
-        var lon = response.coord.lon;
+        const now = moment().format("MMMM Do, YYYY");
+        const lat = response.coord.lat;
+        const lon = response.coord.lon;
 
-        var cityID = response.id;
+        const cityID = response.id;
 
         // populate requested current weather parameters
-        var cityName = $("<p>");
+        const cityName = $("<p>");
         cityName
             .addClass("title")
             .text(response.name)
             .css({ "font-weight": "bolder", "font-size": "x-large" });
         $(".current-weather").append(cityName);
 
-        var date = $("<p>");
+        const date = $("<p>");
         date.addClass("title")
             .text(now)
             .css("font-size", "large");
         $(".current-weather").append(date);
 
-        var icon = $("<img>");
+        const icon = $("<img>");
         icon.attr(
             "src",
             "https://openweathermap.org/img/w/" +
@@ -108,20 +110,20 @@ $(document).ready(function() {
         );
         $(".current-weather").append(icon);
 
-        var temp = $("<p>");
+        const temp = $("<p>");
         temp.text("Temperature: " + response.main.temp + " \u00B0F");
         $(".current-weather").append(temp);
 
-        var humidity = $("<p>");
+        const humidity = $("<p>");
         humidity.text("Humidity: " + response.main.humidity + "%");
         $(".current-weather").append(humidity);
 
-        var wind = $("<p>");
+        const wind = $("<p>");
         wind.text("Wind: " + response.wind.speed + " mph");
         $(".current-weather").append(wind);
 
         // current city URL for UV data
-        var uvURL =
+        let uvURL =
             "https://api.openweathermap.org/data/2.5/uvi?appid=73dd4f9c95552ba9b2a9aa8643789ace&lat=" +
             lat +
             "&lon=" +
@@ -133,11 +135,11 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(urlData) {
             // populate requested current UV parameters
-            var uv = $("<p>");
+            const uv = $("<p>");
             uv.addClass("uv").text("UV Index: ");
             $(".current-weather").append(uv);
 
-            var button = $("<button>");
+            const button = $("<button>");
             button.addClass("uvBtn").text(urlData.value);
             $(".uv").append(button);
 
@@ -162,7 +164,7 @@ $(document).ready(function() {
         });
 
         // 5 day forcast URL
-        var dailyURL =
+        const dailyURL =
             "https://api.openweathermap.org/data/2.5/forecast?id=" +
             cityID +
             "&units=imperial&appid=73dd4f9c95552ba9b2a9aa8643789ace";
@@ -173,7 +175,7 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(dailyData) {
             // five day forcast results sort
-            var dataIndex = 0;
+            let dataIndex = 0;
             for (let i = 0; i < dailyData.list.length; i++) {
                 if (dailyData.list[i].dt_txt.indexOf("15:00:00") !== -1) {
                     // push sorted data into array
@@ -188,11 +190,11 @@ $(document).ready(function() {
 
             // insert 5 day weather data
             for (let m = 0; m < dataArray.length; m++) {
-                var fDate = $("<p>");
+                const fDate = $("<p>");
                 fDate.text(dataArray[m].date);
                 $(dataArray[m].id).append(fDate);
 
-                var fIcon = $("<img>");
+                const fIcon = $("<img>");
                 fIcon.attr(
                     "src",
                     "http://openweathermap.org/img/w/" +
@@ -201,11 +203,11 @@ $(document).ready(function() {
                 );
                 $(dataArray[m].id).append(fIcon);
 
-                var fTemp = $("<p>");
+                const fTemp = $("<p>");
                 fTemp.text("Temperature: " + dataArray[m].temp + " \u00B0F");
                 $(dataArray[m].id).append(fTemp);
 
-                var fHumidity = $("<p>");
+                const fHumidity = $("<p>");
                 fHumidity.text("Humidity: " + dataArray[m].humid + "%");
                 $(dataArray[m].id).append(fHumidity);
             }
@@ -219,14 +221,14 @@ $(document).ready(function() {
     function favoritesBtns() {
         $(".favorites").empty();
         if (cityArray.length !== 0) {
-            var clearBtn = $("<button>");
+            const clearBtn = $("<button>");
             clearBtn
                 .addClass("clear-btn btn btn-outline-light my-2 my-sm-0")
                 .text("Clear");
             $(".favorites").append(clearBtn);
         }
         for (let i = 0; i < cityArray.length; i++) {
-            var button = $("<button>");
+            const button = $("<button>");
             button
                 .addClass("city-btn btn btn-outline-light my-2 my-sm-0")
                 .attr("data-name", cityArray[i])
@@ -241,7 +243,7 @@ $(document).ready(function() {
     }
 
     function getArray() {
-        var browserArray = JSON.parse(localStorage.getItem("cityArray"));
+        const browserArray = JSON.parse(localStorage.getItem("cityArray"));
         if (browserArray !== null) {
             cityArray = browserArray;
         }
@@ -254,7 +256,7 @@ $(document).ready(function() {
         storeArray();
         getArray();
         if (cityArray.length !== 0) {
-            var clearBtn = $("<button>");
+            const clearBtn = $("<button>");
             clearBtn
                 .addClass("clear-btn btn btn-outline-light my-2 my-sm-0")
                 .text("Clear");
@@ -265,7 +267,7 @@ $(document).ready(function() {
     $(".search-button").on("click", function(event) {
         event.preventDefault();
 
-        var queryURL = buildSearchURL();
+        const queryURL = buildSearchURL();
 
         // AJAX call for search button
         $.ajax({
