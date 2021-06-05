@@ -6,7 +6,7 @@ An easy to use weather application that allows you to search for a city and view
 
 ## [Try it yourself!](https://bfeliz.github.io/check-weather-app/)
 
-The following image shows a glimpse of the application:
+The following images show a glimpse of the application:
 
 ![without favorites](assets/images/screenShot1.png)
 ![with favorites](assets/images/screenShot2.png)
