@@ -9,7 +9,7 @@ $(document).ready(function () {
                 "i"
             );
             $.ajax({
-                url: "../utils/city.list.json",
+                url: "https://bfeliz.github.io/check-weather-app/utils/city.list.json",
                 dataType: "json",
                 success: function (data) {
                     response(
