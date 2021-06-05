@@ -2,13 +2,14 @@
 
 ## Description
 
-An easy to use weather application that allows you to search for a city and view the current weather, as well as the five-day forcast. Previously viewed cities are added to the favorites list for quick future reference.
+An easy to use weather application that allows you to search for a city and view the current weather and the upcoming five-day forcast. Previously viewed cities are added to the favorites list for quick future reference.
 
 ## [Try it yourself!](https://bfeliz.github.io/check-weather-app/)
 
 The following image shows a glimpse of the application:
 
-![weather dashboard](assets/images/weather.png)
+![without favorites](assets/images/screenShot1.png)
+![with favorites](assets/images/screenShot2.png)
 
 ## Getting Started
 
@@ -16,15 +17,14 @@ This is a simple application that runs right in the browser, no installation or 
 
 ## Built With:
 
-JavaScript - programming language <br>
-Bootstrap - CSS Framework <br>
-OpenWeatherMap - API for weather data
+HTML <br>
+JavaScript/jQuery <br>
+Bootstrap <br>
+OpenWeatherMap API
 
 ## Author:
 
-Brittany Fortner <br>
-Refactor assistance from: Tucker Beauchamp <br>
-See commit history [here](https://github.com/bfeliz/check-weather-app/graphs/contributors).
+Brittany Fortner
 
 ## Planned Updates
 

@@ -2,6 +2,7 @@ body {
     background-image: url(../assets/images/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: #4f9bd1;
 }
 .navbar {
     opacity: 0.8;
@@ -25,10 +26,22 @@ body {
     margin: 0px 5px;
     padding: 4px;
 }
+.search-bar {
+    padding-left: 38px;
+}
+.ui-autocomplete {
+    background-color: #d6e5f0;
+}
+.ui-menu .ui-menu-item-wrapper:hover,
+.ui-menu .ui-menu-item-wrapper.ui-state-active {
+    background-color: #4f9bd1;
+    border: #fff 1px solid;
+}
 .search-card {
     margin-bottom: 50px;
     opacity: 0.6;
     background-color: #4f9bd1;
+    border: 0;
 }
 .current-card {
     margin: auto;
