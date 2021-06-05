@@ -2,7 +2,7 @@
 
 ## Description
 
-An easy to use weather application that allows you to search for a city and view the current weather and the upcoming five-day forecast. Previously viewed cities are added to the favorites list for quick future reference.
+A minimalistic weather application that allows you to search for a city and view the current weather and the upcoming five-day forecast. Previously viewed cities are added to the favorites list for quick future reference.
 
 ## [Try it yourself!](https://bfeliz.github.io/check-weather-app/)
 
