@@ -24,7 +24,7 @@ OpenWeatherMap API
 
 ## Author:
 
-Brittany Fortner
+Brittany Crosthwait
 
 ## Planned Updates
 
